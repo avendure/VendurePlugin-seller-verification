@@ -29,6 +29,7 @@ export const additionalPermissions: Permission[] = [
 	Permission.ReadAsset,
 	Permission.UpdateAsset,
 	Permission.DeleteAsset,
+	Permission.ReadSettings, //Required for Update-Search-index
 ];
 declare module "@vendure/core/dist/entity/custom-entity-fields" {
 	interface CustomSellerFields {
