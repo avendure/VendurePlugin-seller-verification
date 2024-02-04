@@ -68,7 +68,7 @@ export class SellerVerifyService {
 	): Promise<Seller | undefined> {
 		const { sellerId, isVerified } = sellerIsVerified;
 		/**
-		 * Get seller id
+		 * Get seller id 
 		 * Get channels of seller
 		 * Get roles of channel
 		 * Update permissions for them
