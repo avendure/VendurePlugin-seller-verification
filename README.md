@@ -1,6 +1,12 @@
 # Vendure plugin Seller Verification
 
+This is an open-source plugin that is open to the community to use in any capacity.
+
 Plugin allows superadmin to enable/disable sellers. This can be used to verify sellers if sellers need to be verified in some capacity before being able to post items for sale.
+
+A Seller that is not verified will not be able to create/modify products. A seller that is verified will be able to create/modify products.
+
+This plugin is a work-in-progress and will include additional features in the near future.
 
 ## Testing
 
