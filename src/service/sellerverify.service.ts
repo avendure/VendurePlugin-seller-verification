@@ -31,9 +31,15 @@ export const additionalPermissions: Permission[] = [
 	Permission.DeleteAsset,
 	Permission.ReadSettings, //Required for Update-Search-index
 ];
+
+enum LocalPermission {
+	Validated = 'Validated',
+}
+
 declare module "@vendure/core/dist/entity/custom-entity-fields" {
 	interface CustomSellerFields {
 		isVerified?: boolean;
+		permissions?: LocalPermission[];
 	}
 }
 
@@ -44,6 +50,11 @@ export class SellerVerifyService {
 		private channelService: ChannelService,
 		private roleService: RoleService
 	) {}
+
+	public isValidated(seller: Seller): boolean {
+		const validatedPermission = LocalPermission.Validated;
+		return seller.customFields?.permissions?.includes(validatedPermission) ?? false;
+	  }
 
 	/**
 	 * Update the seller verification status
@@ -57,7 +68,7 @@ export class SellerVerifyService {
 	): Promise<Seller | undefined> {
 		const { sellerId, isVerified } = sellerIsVerified;
 		/**
-		 * Get seller id
+		 * Get seller id 
 		 * Get channels of seller
 		 * Get roles of channel
 		 * Update permissions for them
@@ -81,6 +92,7 @@ export class SellerVerifyService {
 				name: seller.name,
 				customFields: {
 					isVerified,
+					permissions: isVerified? [LocalPermission.Validated] : [],
 				},
 			};
 
